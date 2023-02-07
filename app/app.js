@@ -1,3 +1,6 @@
+
+
+//sidebar navigator
 const sidebar = document.querySelector(".header__menu_sidebar");
 const menuIcon = document.querySelector(".header__menu_icon");
 const lightIcon = document.getElementById("light");
@@ -24,56 +27,88 @@ checkIcon();
 
 const chatButton = document.getElementById("chat_icon");
 const chatInput = document.querySelector(".main__chat_div_input_field");
-
+const chatForm = document.querySelector(".main__chat_div_input_form");
 const API = "https://api.adviceslip.com/advice";
 
-
-
-
-
-chatButton.addEventListener("click", () => {
+const addValueFunc = () => {
   const chatInputVal = chatInput.value;
   addInputs(chatInputVal);
-  chatInput.value="";
-  setTimeout(()=>{
-      fetchAPI(API);
-  },1000)
+  chatInput.value = "";
+  fetchAPI(API);
+};
+
+
+["click", "submit"].forEach((event) => {
+  if (event == "submit") {
+    chatForm.addEventListener(
+      event,
+      (e) => {
+        e.preventDefault();
+        addValueFunc();
+      },
+      false
+    );
+  } else {
+    chatButton.addEventListener(
+      event,
+      (e) => {
+        e.preventDefault();
+        addValueFunc();
+      },
+      false
+    );
+  }
 });
 
-const addInputs = (value) => {
+
+const addInputs = (value, api = false) => {
   const para = document.createElement("p");
-  const paraValue = document.createTextNode(value);
-  para.appendChild(paraValue);
 
+  //adding the inputs
+  if (api == true) {
+    let paraValue = document.createTextNode("typing...");
+    para.appendChild(paraValue);
+    setTimeout(() => {
+      let newparaValue = document.createTextNode(value);
+      para.replaceChild(newparaValue, paraValue);
+    }, 1500);
+  } else {
+    const paraValue = document.createTextNode(value);
+    para.appendChild(paraValue);
+  }
 
-const chatContainer = document.querySelector(".main__chat_div_contain");
+  //chat container
+  const chatContainer = document.querySelector(".main__chat_div_contain");
 
-
+  //the div element which is appended
   const divElement = document.createElement("div");
   divElement.appendChild(para);
   chatContainer.scrollTop = chatContainer.scrollHeight;
   console.log(chatContainer.scrollHeight);
-  divElement.classList.add("main__chat_div_contain_val")
+  divElement.classList.add("main__chat_div_contain_val");
+
   chatContainer.appendChild(divElement);
+
   chatContainer.scrollTop = chatContainer.scrollHeight;
+  setTimeout(() => {
+    api == true
+      ? divElement.classList.add("chat-api-animation")
+      : divElement.classList.add("chat-animation");
+  }, 0);
 };
 
+//fetching the api
 
-
-const fetchAPI = async API =>{
-    const data = await fetch(API);
-    const jsonData = await data.json();
-    let value = jsonData.slip.advice;
-    console.log(value);
-    value = value.length > 100 ? value.slice(0,100) : value;
-    addInputs(value);
-}
-
-
-
+const fetchAPI = async (API) => {
+  const data = await fetch(API);
+  const jsonData = await data.json();
+  let value = jsonData.slip.advice;
+  console.log(value);
+  value = value.length > 100 ? value.slice(0, 100) : value;
+  addInputs(value, true);
+};
 
 //toggle menus
-
 
 const mainChatToggle = document.querySelector(".main__chat_toggle");
 const mainChatDiv = document.querySelector(".main__chat_div");
@@ -84,45 +119,37 @@ const showChatIcon = document.querySelector(".main__chat_toggle--btn");
 const sparrowIcon = document.querySelector(".main__chat_icon--sparrow");
 const chatClose = document.getElementById("chatclose");
 
+sparrowIcon.addEventListener("click", () => {
+  mainChatToggle.classList.add("show_toggle_class");
 
-sparrowIcon.addEventListener("click",()=>{
-    
-    mainChatToggle.classList.add("show_toggle_class");
-
-    sparrowIcon.style.display ="none";
-    chatClose.classList.add("show_close_icon");
-    checkToggleIcon()
-
-})
-
-showChatIcon.addEventListener("click",()=>{
-    mainChatToggle.classList.remove("show_toggle_class");
-    mainChatDiv.classList.add("show_chat_class");
-
-    
-    checkToggleIcon()
-    
-  })
-  
-  
-  chatClose.addEventListener("click",()=>{
-    mainChatDiv.classList.remove("show_chat_class");
-    mainChatToggle.classList.remove("show_toggle_class");
-
-    
-    checkToggleIcon()
+  sparrowIcon.style.display = "none";
+  chatClose.classList.add("show_close_icon");
+  checkToggleIcon();
 });
 
+showChatIcon.addEventListener("click", () => {
+  mainChatToggle.classList.remove("show_toggle_class");
+  mainChatDiv.classList.add("show_chat_class");
 
+  checkToggleIcon();
+});
 
-const checkToggleIcon =() =>{
-if(mainChatToggle.classList.contains("show_toggle_class") || mainChatDiv.classList.contains("show_chat_class")){
+chatClose.addEventListener("click", () => {
+  mainChatDiv.classList.remove("show_chat_class");
+  mainChatToggle.classList.remove("show_toggle_class");
 
-    sparrowIcon.style.display ="none";
-    chatClose.style.display="block";
-}else{
+  checkToggleIcon();
+});
 
-    sparrowIcon.style.display ="block";
-    chatClose.style.display="none";
-}
-}
+const checkToggleIcon = () => {
+  if (
+    mainChatToggle.classList.contains("show_toggle_class") ||
+    mainChatDiv.classList.contains("show_chat_class")
+  ) {
+    sparrowIcon.style.display = "none";
+    chatClose.style.display = "block";
+  } else {
+    sparrowIcon.style.display = "block";
+    chatClose.style.display = "none";
+  }
+};

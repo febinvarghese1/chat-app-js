@@ -413,11 +413,13 @@
   left: 140px;
   margin-top: 15px;
   border-radius: 5px;
-  -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 100% 75%, 100% 100%, 92% 76%, 0 76%);
-          clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 100% 75%, 100% 100%, 92% 76%, 0 76%);
 }
 .main__chat_div_contain_val:nth-child(odd) {
   margin-left: auto;
+  -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 100% 73%, 100% 99%, 88% 76%, 0% 75%);
+          clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 100% 73%, 100% 99%, 88% 76%, 0% 75%);
+  transition: all 1s ease;
+  transform: translateX(120%);
 }
 .main__chat_div_contain_val p {
   padding: 15px;
@@ -448,6 +450,8 @@
   left: 10px;
   margin-top: 15px;
   border-radius: 5px;
+  transform: translateX(-120%);
+  transition: all 1s ease;
   -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 9% 76%, 0 100%, 0 76%, 0 76%);
           clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 9% 76%, 0 100%, 0 76%, 0 76%);
 }
@@ -478,4 +482,12 @@
 
 .show_close_icon {
   display: block;
+}
+
+.chat-animation {
+  transform: translateX(0%) !important;
+}
+
+.chat-api-animation {
+  transform: translateX(0%) !important;
 }/*# sourceMappingURL=main.css.map */

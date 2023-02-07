@@ -262,7 +262,9 @@
 
           &:nth-child(odd){
             margin-left: auto;
-            
+            clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 100% 73%, 100% 99%, 88% 76%, 0% 75%);
+            transition: all 1s ease;
+            transform: translateX(120%);
           }
           & p {
             padding: 15px;
@@ -288,6 +290,8 @@
             left: 10px;
             margin-top: 15px;
             border-radius: 5px;
+            transform: translateX(-120%);
+            transition: all 1s ease;
             clip-path: polygon(
               0% 0%,
               100% 0%,
@@ -297,6 +301,8 @@
               0 76%,
               0 76%
             );
+
+            
             // &::before{
             //     position: absolute;
             //     content: '';
@@ -339,4 +345,11 @@
 
 .show_close_icon {
   display: block;
+}
+
+.chat-animation{
+  transform: translateX(0%) !important;
+}
+.chat-api-animation{
+  transform: translateX(0%) !important;
 }
