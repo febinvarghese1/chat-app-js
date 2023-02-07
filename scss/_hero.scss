@@ -258,18 +258,11 @@
           left: 140px;
           margin-top: 15px;
           border-radius: 5px;
-          clip-path: polygon(
-            0% 0%,
-            100% 0%,
-            100% 75%,
-            100% 75%,
-            100% 100%,
-            92% 76%,
-            0 76%
-          );
+          
 
           &:nth-child(odd){
             margin-left: auto;
+            
           }
           & p {
             padding: 15px;

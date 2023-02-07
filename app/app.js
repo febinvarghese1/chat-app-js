@@ -36,7 +36,6 @@ chatButton.addEventListener("click", () => {
   addInputs(chatInputVal);
   chatInput.value="";
   setTimeout(()=>{
-
       fetchAPI(API);
   },1000)
 });
@@ -52,9 +51,11 @@ const chatContainer = document.querySelector(".main__chat_div_contain");
 
   const divElement = document.createElement("div");
   divElement.appendChild(para);
+  chatContainer.scrollTop = chatContainer.scrollHeight;
+  console.log(chatContainer.scrollHeight);
   divElement.classList.add("main__chat_div_contain_val")
-
   chatContainer.appendChild(divElement);
+  chatContainer.scrollTop = chatContainer.scrollHeight;
 };
 
 
@@ -65,7 +66,6 @@ const fetchAPI = async API =>{
     let value = jsonData.slip.advice;
     console.log(value);
     value = value.length > 100 ? value.slice(0,100) : value;
-    console.log(value);
     addInputs(value);
 }
 
