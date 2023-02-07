@@ -253,39 +253,40 @@
         //     height: 30vh;
         // }
         &_val {
-          width: 250px;
+          &--user{
+
+          width: 200px;
+          height: auto;
           background-color: #4c5aa1;
-        // margin-left: auto;
           left: 140px;
           margin-top: 15px;
           border-radius: 5px;
           padding: 10px;
-          
-
-          &:nth-child(odd){
+            color: white;
             margin-left: auto;
             clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 100% 73%, 100% 99%, 88% 76%, 0% 75%);
             transition: all 1s ease;
             
             transform: translateX(120%);
-          }
-          & p {
-            padding-bottom: 20px;
-            font-size: 0.9rem;
-            color: white;
-            @include break.mobile{
-                font-size: 0.7rem;
+            & p {
+              padding-bottom: 15px;
+              font-size: 0.9rem;
+              color: white;
+              @include break.mobile{
+                  font-size: 0.7rem;
+              }
+              @include break.laptop{
+                  font-size: 0.8rem;
+              }
             }
-            @include break.laptop{
-                font-size: 0.8rem;
+  
+            @include break.mobile {
+              width: 200px;
             }
           }
-
-          @include break.mobile {
+          
+          &--api {
             width: 200px;
-          }
-          &:nth-child(even) {
-            width: 300px;
             height: auto;
             background-color: #ecf1fb;
             padding: 10px;
@@ -305,6 +306,7 @@
             );
             & p {
               color: black;
+              padding-bottom: 20px;
               font-size: 0.9rem;
 
             @include break.mobile{

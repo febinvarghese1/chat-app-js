@@ -1,5 +1,3 @@
-
-
 //sidebar navigator
 const sidebar = document.querySelector(".header__menu_sidebar");
 const menuIcon = document.querySelector(".header__menu_icon");
@@ -32,13 +30,15 @@ const API = "https://api.adviceslip.com/advice";
 
 const addValueFunc = () => {
   const chatInputVal = chatInput.value;
+  if (chatInputVal.length == 0) {
+    return false;
+  }
   addInputs(chatInputVal);
   chatInput.value = "";
-  setTimeout(()=>{
+  setTimeout(() => {
     fetchAPI(API);
-  },800)
+  }, 800);
 };
-
 
 ["click", "submit"].forEach((event) => {
   if (event == "submit") {
@@ -62,39 +62,61 @@ const addValueFunc = () => {
   }
 });
 
-
-const addInputs = (value, api = false) => {
+const addUserInputs = (value) => {
   const para = document.createElement("p");
+  const paraValue = document.createTextNode(value);
+  para.appendChild(paraValue);
 
-  //adding the inputs
-  if (api == true) {
-    let paraValue = document.createTextNode("Typing...");
-    para.appendChild(paraValue);
-    setTimeout(() => {
-      let newparaValue = document.createTextNode(value);
-      para.replaceChild(newparaValue, paraValue);
-    }, 1600);
-  } else {
-    const paraValue = document.createTextNode(value);
-    para.appendChild(paraValue);
-  }
-
-  //chat container
   const chatContainer = document.querySelector(".main__chat_div_contain");
 
   //the div element which is appended
   const divElement = document.createElement("div");
   divElement.appendChild(para);
-  divElement.classList.add("main__chat_div_contain_val");
+  divElement.classList.add("main__chat_div_contain_val--user");
 
   chatContainer.appendChild(divElement);
 
   chatContainer.scrollTop = chatContainer.scrollHeight;
+
   setTimeout(() => {
-    api == true
-      ? divElement.classList.add("chat-api-animation")
-      : divElement.classList.add("chat-animation");
+    divElement.classList.add("chat-animation");
   }, 0);
+
+  return;
+};
+
+
+const addApiInputs = (value) =>{
+  const para = document.createElement("p");
+
+  let paraValue = document.createTextNode("Typing...");
+    para.appendChild(paraValue);
+    setTimeout(() => {
+      let newparaValue = document.createTextNode(value);
+      para.replaceChild(newparaValue, paraValue);
+    }, 1600);
+
+    //chat container
+  const chatContainer = document.querySelector(".main__chat_div_contain");
+
+  //the div element which is appended
+  const divElement = document.createElement("div");
+  divElement.appendChild(para);
+  divElement.classList.add("main__chat_div_contain_val--api");
+
+  chatContainer.appendChild(divElement);
+
+  chatContainer.scrollTop = chatContainer.scrollHeight;
+
+  setTimeout(() => {
+    divElement.classList.add("chat-api-animation");
+  }, 0);
+}
+
+const addInputs = (value, api = false) => {
+
+    api ? addApiInputs(value) : addUserInputs(value);
+ 
 };
 
 //fetching the api
