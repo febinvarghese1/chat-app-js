@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800&display=swap');
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+.image_container{
+    background-image: url("../Banner.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top right;
+
+
+    min-height: 100vh;
+    
+}
+
+
+@media screen and(min-width: 1441px) {
+    .main_container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .main_section{
+        width: 1440px;
+    }
+}
+
+
+.main_section{
+
+    overflow: hidden;
+    font-family: Montserrat;
+    max-width: 1440px;
+}
+
