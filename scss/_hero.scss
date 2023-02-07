@@ -244,7 +244,8 @@
       &_contain {
         height: 100vh;
         // position: relative;
-        overflow: scroll;
+        overflow: hidden;
+        overflow-y: scroll;
         padding: 10px;
 
 
@@ -265,6 +266,7 @@
             margin-left: auto;
             clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 100% 73%, 100% 99%, 88% 76%, 0% 75%);
             transition: all 1s ease;
+            
             transform: translateX(120%);
           }
           & p {
@@ -283,7 +285,7 @@
             width: 200px;
           }
           &:nth-child(even) {
-            width: 300px;
+            width: auto;
             height: auto;
             background-color: #ecf1fb;
             padding: 10px;
