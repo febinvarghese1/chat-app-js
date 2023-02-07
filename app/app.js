@@ -35,7 +35,6 @@ const addValueFunc = () => {
   addInputs(chatInputVal);
   chatInput.value = "";
   setTimeout(()=>{
-
     fetchAPI(API);
   },800)
 };
@@ -86,8 +85,6 @@ const addInputs = (value, api = false) => {
   //the div element which is appended
   const divElement = document.createElement("div");
   divElement.appendChild(para);
-  chatContainer.scrollTop = chatContainer.scrollHeight;
-  console.log(chatContainer.scrollHeight);
   divElement.classList.add("main__chat_div_contain_val");
 
   chatContainer.appendChild(divElement);
