@@ -258,6 +258,7 @@
           left: 140px;
           margin-top: 15px;
           border-radius: 5px;
+          padding: 10px;
           
 
           &:nth-child(odd){
@@ -267,7 +268,6 @@
             transform: translateX(120%);
           }
           & p {
-            padding: 15px;
             padding-bottom: 20px;
             font-size: 0.9rem;
             color: white;
@@ -286,7 +286,7 @@
             width: 300px;
             height: auto;
             background-color: #ecf1fb;
-            height: 100px;
+            padding: 10px;
             left: 10px;
             margin-top: 15px;
             border-radius: 5px;
@@ -301,18 +301,6 @@
               0 76%,
               0 76%
             );
-
-            
-            // &::before{
-            //     position: absolute;
-            //     content: '';
-            //     width: 30px;
-            //     height: 30px;
-            //     background-color: red;
-            //     border-radius: 100%;
-            //     left: 0px;
-            //     z-index: 10;
-            // }
             & p {
               color: black;
               font-size: 0.9rem;

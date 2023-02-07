@@ -34,7 +34,10 @@ const addValueFunc = () => {
   const chatInputVal = chatInput.value;
   addInputs(chatInputVal);
   chatInput.value = "";
-  fetchAPI(API);
+  setTimeout(()=>{
+
+    fetchAPI(API);
+  },800)
 };
 
 
@@ -66,12 +69,12 @@ const addInputs = (value, api = false) => {
 
   //adding the inputs
   if (api == true) {
-    let paraValue = document.createTextNode("typing...");
+    let paraValue = document.createTextNode("Typing...");
     para.appendChild(paraValue);
     setTimeout(() => {
       let newparaValue = document.createTextNode(value);
       para.replaceChild(newparaValue, paraValue);
-    }, 1500);
+    }, 1600);
   } else {
     const paraValue = document.createTextNode(value);
     para.appendChild(paraValue);
